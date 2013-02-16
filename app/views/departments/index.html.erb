@@ -1,0 +1,33 @@
+
+<table class="table table-striped">
+  <thead>
+    <legend>Departments</legend>
+    <tr>
+      <th>Name</th>
+      <th>Head</th>
+      <th>Deputy</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @departments.each do |department| %>
+      <tr>
+        <td><%= department.name %></td>
+        <td><%= department.head.name %></td>
+        <td><%= department.deputy.name %></td>
+        <td><%= link_to 'Edit', edit_department_path(department), :class => "btn btn-mini btn-primary" %>
+            <%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?'},:class => "btn btn-mini btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="4">
+    <%= link_to 'New Department', new_department_path , :class => "btn btn-mini btn-primary"%>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<br />
+

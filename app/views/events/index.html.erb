@@ -1,0 +1,37 @@
+<table class="table table-striped">
+  <thead>
+  <legend>Listing events</legend>
+    <tr>
+      <th>Name</th>
+      <th>Term start</th>
+      <th>Term end</th>
+      <th>Order end</th>
+      <th>Manager</th>
+      <th>Deputy</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= event.name %></td>
+        <td><%= event.term_start %></td>
+        <td><%= event.term_end %></td>
+        <td><%= event.order_end %></td>
+        <td><%= event.manager %></td>
+        <td><%= event.deputy %></td>
+        <td><%= link_to 'Edit', edit_event_path(event), :class=>"btn btn-mini btn-primary" %>
+          <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } , :class=>"btn btn-mini btn-danger"%></td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan=7><%= link_to 'New Event', new_event_path, :class=>"btn btn-mini btn-primary" %></td>
+    </tr> 
+  </tfoot>
+</table>
+
+<br />
+
+

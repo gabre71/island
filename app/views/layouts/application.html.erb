@@ -2,12 +2,15 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Rails3 Bootstrap Devise Cancan" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Rails3 Bootstrap Devise Cancan" %>">
+    <title><%= content_for?(:title) ? yield(:title) : "Sziget eszköz management" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Sziget" %>">
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
-    <%= yield(:head) %>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->    <%= yield(:head) %>
   </head>
   <body class="<%= controller_name %> <%= action_name %>">
     <header class="navbar navbar-fixed-top">

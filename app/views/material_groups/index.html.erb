@@ -1,0 +1,25 @@
+<table class="table table-striped">
+  <thead>
+  <legend>Listing material_groups</legend>
+  <tr>
+    <th>Name</th>
+    <th></th>
+  </tr>
+<tbody>
+  <% @material_groups.each do |material_group| %>
+    <tr>
+      <td><%= material_group.name %></td>
+      <td><%= link_to 'Edit', edit_material_group_path(material_group), :class=>"btn btn-mini btn-primary" %>
+        <%= link_to 'Destroy', material_group, method: :delete, data: { confirm: 'Are you sure?', :class=>"btn btn-mini btn-danger" } %></td>
+    </tr>
+  <% end %>
+</tbody>
+<tfoot>
+  <tr>
+    <td colspan = 2>
+      <%= link_to 'New Material group', new_material_group_path, :class=>"btn btn-mini btn-primary" %>
+    </td>
+  </tr>
+</tfoot>
+</table>
+

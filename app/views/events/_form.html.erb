@@ -1,0 +1,11 @@
+<%= simple_form_for(@event  , :html => {:class=> "form-horizontal"}) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :term_start, :as => :string %>
+    <%= f.input :term_end, :as => :string %>
+    <%= f.input :order_end, :as => :string %>
+    <%= f.association :manager %>
+    <%= f.association :deputy %>
+    <%= f.button :submit , :class=>"btn-success" %>
+  </div>
+<% end %>

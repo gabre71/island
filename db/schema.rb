@@ -11,7 +11,58 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120418171112) do
+ActiveRecord::Schema.define(:version => 20130215221144) do
+
+  create_table "departments", :force => true do |t|
+    t.string   "name"
+    t.integer  "head_id"
+    t.integer  "deputy_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "departments", ["deputy_id"], :name => "index_departments_on_deputy_id"
+  add_index "departments", ["head_id"], :name => "index_departments_on_head_id"
+
+  create_table "events", :force => true do |t|
+    t.string   "name"
+    t.date     "term_start"
+    t.date     "term_end"
+    t.date     "order_end"
+    t.integer  "manager_id"
+    t.integer  "deputy_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "events", ["deputy_id"], :name => "index_events_on_deputy_id"
+  add_index "events", ["manager_id"], :name => "index_events_on_manager_id"
+
+  create_table "material_groups", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "material_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "materials", :force => true do |t|
+    t.string   "name"
+    t.integer  "material_group_id"
+    t.integer  "material_type_id"
+    t.float    "quantity"
+    t.integer  "unit_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "materials", ["material_group_id"], :name => "index_materials_on_material_group_id"
+  add_index "materials", ["material_type_id"], :name => "index_materials_on_material_type_id"
+  add_index "materials", ["unit_id"], :name => "index_materials_on_unit_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -24,7 +75,24 @@ ActiveRecord::Schema.define(:version => 20120418171112) do
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
+  create_table "units", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "user_departments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "department_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "user_departments", ["department_id"], :name => "index_user_departments_on_department_id"
+  add_index "user_departments", ["user_id"], :name => "index_user_departments_on_user_id"
+
   create_table "users", :force => true do |t|
+    t.string   "name"
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
@@ -37,7 +105,6 @@ ActiveRecord::Schema.define(:version => 20120418171112) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.string   "name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
