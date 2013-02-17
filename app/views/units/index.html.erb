@@ -9,7 +9,6 @@
   <% @units.each do |unit| %>
     <tr>
       <td><%= unit.name %></td>
-      <td><%= link_to 'Show', unit %></td>
       <td><%= link_to 'Edit', edit_unit_path(unit), :class=>"btn btn-mini btn-primary" %>
           <%= link_to 'Destroy', unit, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-mini btn-danger"  %></td>
     </tr>

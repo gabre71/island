@@ -1,5 +1,11 @@
-<legend>Editing department</legend>
+<div class="row">
+	<div class= "span6">
+		<legend>Editing department</legend>
 
-<%= render 'form' %>
-
+		<%= render 'form' %>
+	</div>
+	<div class= "span6">
+		<%= render 'add_user' %>
+	</div>
+</div>
 <%= link_to 'Back', departments_path, :class=> "btn btn-mini btn-primary" %>

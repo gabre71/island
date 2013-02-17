@@ -42,7 +42,7 @@ class MaterialGroupsController < ApplicationController
 
     respond_to do |format|
       if @material_group.save
-        format.html { redirect_to @material_group, notice: 'Material group was successfully created.' }
+        format.html { redirect_to material_groups_path, notice: 'Material group was successfully created.' }
         format.json { render json: @material_group, status: :created, location: @material_group }
       else
         format.html { render action: "new" }
@@ -56,7 +56,7 @@ class MaterialGroupsController < ApplicationController
   def update
     respond_to do |format|
       if @material_group.update_attributes(params[:material_group])
-        format.html { redirect_to @material_group, notice: 'Material group was successfully updated.' }
+        format.html { redirect_to material_groups_path, notice: 'Material group was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

@@ -42,7 +42,7 @@ class MaterialTypesController < ApplicationController
 
     respond_to do |format|
       if @material_type.save
-        format.html { redirect_to @material_type, notice: 'Material type was successfully created.' }
+        format.html { redirect_to material_types_path, notice: 'Material type was successfully created.' }
         format.json { render json: @material_type, status: :created, location: @material_type }
       else
         format.html { render action: "new" }
@@ -56,7 +56,7 @@ class MaterialTypesController < ApplicationController
   def update
     respond_to do |format|
       if @material_type.update_attributes(params[:material_type])
-        format.html { redirect_to @material_type, notice: 'Material type was successfully updated.' }
+        format.html { redirect_to material_types_path, notice: 'Material type was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

@@ -42,7 +42,7 @@ class DepartmentsController < ApplicationController
 
     respond_to do |format|
       if @department.save
-        format.html { redirect_to @department, notice: 'Department was successfully created.' }
+        format.html { redirect_to departments_path, notice: 'Department was successfully created.' }
         format.json { render json: @department, status: :created, location: @department }
       else
         format.html { render action: "new" }
@@ -57,7 +57,7 @@ class DepartmentsController < ApplicationController
 
     respond_to do |format|
       if @department.update_attributes(params[:department])
-        format.html { redirect_to @department, notice: 'Department was successfully updated.' }
+        format.html { redirect_to departments_path, notice: 'Department was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -73,6 +73,29 @@ class DepartmentsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to departments_url }
+      format.json { head :no_content }
+    end
+  end
+
+  def add_user
+    @department= Department.find(params[:department_id])
+    @user = User.find(params[:add_user][:user])
+    puts "@department #{@department.inspect}"
+    puts "@user #{@user.inspect}"
+    @department.add_user(@user)
+    respond_to do |format|
+      format.html { redirect_to edit_department_path(@department) }
+      format.json { head :no_content }
+    end
+  end
+  
+  def remove_user
+    @department= Department.find(params[:department_id])
+    @user = User.find(params[:user])
+    @conn = @department.user_departments.find_by_user_id(@user)
+    @conn.destroy
+    respond_to do |format|
+      format.html { redirect_to edit_department_path(@department) }
       format.json { head :no_content }
     end
   end

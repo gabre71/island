@@ -9,9 +9,8 @@
     <% @material_types.each do |material_type| %>
       <tr>
         <td><%= material_type.name %></td>
-        <td><%= link_to 'Show', material_type %></td>
-        <td><%= link_to 'Edit', edit_material_type_path(material_type) %></td>
-        <td><%= link_to 'Destroy', material_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_material_type_path(material_type), :class=> "btn btn-mini btn-primary" %>
+            <%= link_to 'Destroy', material_type, method: :delete, data: { confirm: 'Are you sure?' }, :class=> "btn btn-mini btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>

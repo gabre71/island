@@ -1,4 +1,8 @@
 Rails3BootstrapDeviseCancan::Application.routes.draw do
+  get "user_departments/create"
+
+  get "user_departments/destroy"
+
   resources :units
 
 
@@ -6,7 +10,10 @@ Rails3BootstrapDeviseCancan::Application.routes.draw do
   resources :material_groups
   resources :materials
   resources :events
-  resources :departments
+  resources :departments do
+    post "add_user"
+    get "remove_user"
+  end
 
 
   authenticated :user do

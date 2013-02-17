@@ -1,0 +1,20 @@
+<table class ="table table-striped">
+<legend>Users</legend>
+<thead>
+		<th>User</th>
+		<th>Email</th>
+	</thead>
+	<tbody>
+		<%@department.users.each do |user|%>
+		<tr>
+			<td><%= user.name %></td>
+			<td><%= user.email %></td>
+			<td><%=  link_to( "Destroy", department_remove_user_path(@department, :user=> user) ,:class => "btn btn-mini btn-danger", :confirm => "Biztosan törölhetem?")%></td>
+		</tr>
+		<%end%>
+	</tbody>
+</table>
+<%= simple_form_for( :add_user, :url => department_add_user_path(@department), :html => { :class => 'form-horizontal well' }) do |f| %>
+<legend>Add User</legend>
+	<%= f.input :user, :collection => User.all, :label => "User", :prompt => "Select user"  %><%= f.button :submit , 'Add User'%>
+<% end %>
